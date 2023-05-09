@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.springframework.integration:spring-integration-mail:6.0.5'
+    testRuntimeOnly 'org.eclipse.angus:angus-mail:2.0.1'
+
+    //use 2.1 alpha version in test, because otherwise greenmail brings the old mail runtime on the classpath which disturbs the test
+    //(2 different runtimes on the classpath)
+    testImplementation 'com.icegreen:greenmail-junit5:2.1.0-alpha-1'
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
